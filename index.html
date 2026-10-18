@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNK INFRA — Building Better Tomorrow</title>
+  <meta name="description" content="MNK Infra is premier construction & engineering company in India. Commercial, residential, industrial and infrastructure projects since 2007.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23000000'/><text x='50' y='70' font-size='56' font-family='Georgia' font-weight='bold' fill='%23d6db1d' text-anchor='middle'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body class="color-black">
+
+  <!-- ===== Header (overlay over hero, solid on scroll) ===== -->
+  <header class="siteheader" id="siteheader">
+    <div class="navbar">
+      <div class="container navbar__inner">
+        <a class="brand" href="#top" aria-label="MNK Infra home">
+          <span class="brand__text">MNK <em>INFRA</em></span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Main">
+          <ul class="nav__list">
+            <li class="nav__item nav__item--sub">
+              <a href="#expertise">Services <span class="chev">&#9662;</span></a>
+              <div class="submenu">
+                <div class="submenu__col">
+                  <p class="submenu__title">Buildings</p>
+                  <a href="#expertise">Commercial Buildings</a>
+                  <a href="#expertise">Residential Buildings</a>
+                  <a href="#expertise">Multi-Storey Buildings</a>
+                  <a href="#expertise">Pre-Engineered Structures</a>
+                </div>
+                <div class="submenu__col">
+                  <p class="submenu__title">Civil &amp; Infrastructure</p>
+                  <a href="#expertise">Road Construction</a>
+                  <a href="#expertise">Earth Work &amp; Site Prep</a>
+                  <a href="#expertise">Waterproofing &amp; Insulation</a>
+                  <a href="#expertise">HVAC, Plumbing &amp; Electrical</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav__item"><a href="#projects">Projects</a></li>
+            <li class="nav__item"><a href="#about">About</a></li>
+            <li class="nav__item"><a href="#purpose">Vision</a></li>
+            <li class="nav__item"><a href="#purpose">Safety</a></li>
+            <li class="nav__item"><a href="#experience">Our Team</a></li>
+            <li class="nav__item"><a href="#contact">Contact</a></li>
+          </ul>
+          <a class="btn btn--lime nav__mobile-cta" href="#contact">Build With Us</a>
+        </nav>
+
+        <a class="btn btn--lime navbar__cta" href="#contact">Build With Us</a>
+
+        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== HERO — video bg + overlay, melts into black ===== -->
+    <section class="hero panel" data-panel="black">
+      <div class="hero__media" data-heromedia aria-hidden="true">
+        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline poster="https://picsum.photos/seed/mnkskyline/1920/1200">
+        </video>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <h1 class="hero__title reveal" style="--d:.45s">Building <em>Better</em> Tomorrow</h1>
+        <div class="reveal" style="--d:.7s">
+          <a class="btn btn--lime btn--w220" href="#contact">Get In Touch</a>
+        </div>
+      </div>
+
+      <button class="hero__videobtn" id="heroVideoBtn" type="button" aria-label="Pause background video">
+        <span class="hero__videobtn-icon" id="heroVideoIcon">&#10074;&#10074;</span>
+        <span class="hero__videobtn-text">Brand film<small id="heroVideoState">playing</small></span>
+      </button>
+
+      <div class="hero__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ===== INTRO — black ===== -->
+    <section class="intro panel" id="about" data-panel="black">
+      <div class="container intro__grid">
+        <div class="reveal">
+          <p class="eyebrow">Since 2007</p>
+          <h2 class="intro__title">A progressive <span class="lime">civil engineering &amp; construction</span> company executing projects across Maharashtra.</h2>
+        </div>
+        <div class="intro__copy reveal" style="--d:.2s">
+          <p>Promoted by Mr. Naseem Khan, a Civil Engineer by profession, MNK INFRA is a team of highly trained and experienced Civil Engineers in the field of Civil Construction of Industrial, Commercial and Residential projects. With rich hands-on experience of more than 10 years and a successful track record of on-time deliveries, we handle any challenging project at any location.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS — black, giant parallax title + slider ===== -->
+    <section class="projects panel" id="projects" data-panel="black">
+      <div class="giant" data-giant data-giant-speed="420" aria-hidden="true">Projects</div>
+
+      <div class="container projects__head">
+        <div class="filters reveal">
+          <span class="filters__label">I'm interested in</span>
+          <div class="dropdown" id="dropdown">
+            <button class="dropdown__btn" type="button" aria-expanded="false">
+              <span class="dropdown__value">market</span>
+              <svg viewBox="0 0 96 96" width="16" height="16" aria-hidden="true"><path fill="#d6db1d" d="M81.8,25.4a6,6,0,0,0-8.5.8L48,56.6,22.6,26.2a6,6,0,1,0-9.2,7.7L43.4,69.8a6,6,0,0,0,9.2,0L82.6,33.8A6,6,0,0,0,81.8,25.4Z"/></svg>
+            </button>
+            <ul class="dropdown__menu">
+              <li><button type="button" data-value="market">Reset</button></li>
+              <li><button type="button" data-value="Commercial Buildings">Commercial Buildings</button></li>
+              <li><button type="button" data-value="Residential Buildings">Residential Buildings</button></li>
+              <li><button type="button" data-value="Road Construction">Road Construction</button></li>
+              <li><button type="button" data-value="Industrial Structures">Industrial Structures</button></li>
+              <li><button type="button" data-value="Multi-Storey Buildings">Multi-Storey Buildings</button></li>
+              <li><button type="button" data-value="Concrete Tanks">Concrete Tanks</button></li>
+              <li><button type="button" data-value="Waterproofing">Waterproofing</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="slider-nav reveal" style="--d:.15s">
+          <button class="slider-nav__btn" type="button" data-slide="prev" aria-label="Previous projects">&#8592;</button>
+          <button class="slider-nav__btn" type="button" data-slide="next" aria-label="Next projects">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="p-slider" id="pSlider">
+        <div class="p-track" id="pTrack">
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnkcorp/1000/1250" alt="Andheri Corporate Plaza placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Commercial Buildings</p>
+            <h3 class="p-card__title">Andheri Corporate Plaza</h3>
+            <p class="p-card__loc">Andheri, Mumbai</p>
+          </a>
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnkindustrial/1000/1250" alt="Tunga Industrial Structure placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Industrial Structures</p>
+            <h3 class="p-card__title">Tunga Industrial Complex</h3>
+            <p class="p-card__loc">Bhiwandi, Maharashtra</p>
+          </a>
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnkresidency/1000/1250" alt="Santacruz Residency placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Residential Buildings</p>
+            <h3 class="p-card__title">Santacruz Residency</h3>
+            <p class="p-card__loc">Santacruz, Mumbai</p>
+          </a>
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnkroadwork/1000/1250" alt="Panvel Road Package placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Road Construction</p>
+            <h3 class="p-card__title">Panvel Highway Package</h3>
+            <p class="p-card__loc">Panvel, Maharashtra</p>
+          </a>
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnktankwork/1000/1250" alt="Water Storage Tanks placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Concrete Tanks</p>
+            <h3 class="p-card__title">Municipal Water Storage Tanks</h3>
+            <p class="p-card__loc">Thane, Maharashtra</p>
+          </a>
+          <a class="p-card" href="#contact">
+            <div class="p-card__frame"><img data-imgparallax src="https://picsum.photos/seed/mnkwarehouse/1000/1250" alt="Vasai Logistics Warehouse placeholder" loading="lazy"></div>
+            <p class="p-card__cat">Warehouses</p>
+            <h3 class="p-card__title">Vasai Logistics Warehouse</h3>
+            <p class="p-card__loc">Vasai, Maharashtra</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="container projects__foot">
+        <a class="link-arrow reveal" href="#projects">View All Projects <span>&rarr;</span></a>
+      </div>
+    </section>
+
+    <!-- ===== STATS — white ===== -->
+    <section class="stats panel" id="reach" data-panel="white">
+      <div class="container">
+        <p class="stats__lead reveal">We are grateful for every project entrusted to us — along with our clients, architects and consultants, our team relentlessly strives to elevate the business of construction.</p>
+        <div class="stats__grid" data-stagger>
+          <div class="stat reveal">
+            <p class="stat__num"><span class="count" data-target="2007">0</span></p>
+            <h6 class="stat__label">Established</h6>
+            <p class="stat__desc">Serving clients, architects and consultants across Maharashtra since 2007.</p>
+          </div>
+          <div class="stat reveal">
+            <p class="stat__num"><span class="count" data-target="10" data-suffix="+">0+</span></p>
+            <h6 class="stat__label">Years of Experience</h6>
+            <p class="stat__desc">Rich hands-on experience across Infrastructure, Commercial, Residential and Land Development projects.</p>
+          </div>
+          <div class="stat reveal">
+            <p class="stat__num"><span class="count" data-target="13" data-suffix="+">0+</span></p>
+            <h6 class="stat__label">Construction Services</h6>
+            <p class="stat__desc">From buildings and roads to industrial structures, waterproofing and MEP works.</p>
+          </div>
+          <div class="stat reveal">
+            <p class="stat__num"><span class="count" data-target="100" data-suffix="%">0%</span></p>
+            <h6 class="stat__label">On-Time Deliveries</h6>
+            <p class="stat__desc">Project management skills that have delivered complex industrial projects on schedule.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUR EXPERTISE — white, giant title + scroll-driven slider ===== -->
+    <section class="expertise panel" id="expertise" data-panel="white">
+      <div class="giant giant--light expertise__giant" data-giant data-giant-speed="3600" aria-hidden="true">Our Expertise</div>
+
+      <div class="container expertise__grid">
+        <div class="expertise__content reveal">
+          <h2>What We Do</h2>
+          <p>From commercial and residential buildings to roads, industrial structures and specialty civil works — we handle any challenging project at any location.</p>
+        </div>
+
+        <div class="expertise__sliderwrap">
+          <div class="expertise__slider" id="expSlider">
+            <div class="expertise__track" id="expTrack">
+          <a class="e-card" href="#contact" style="background-image:url('images/commercial.jpg')"><div class="e-card__in"><h4>Building</h4><h3>Commercial Buildings</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/residential.jpg')"><div class="e-card__in"><h4>Building</h4><h3>Residential Buildings</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/specialty-civil.jpg')"><div class="e-card__in"><h4>Civil</h4><h3>Specialty Civil Works</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/road-construction.jpg')"><div class="e-card__in"><h4>Infrastructure</h4><h3>Road Construction</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/earthwork.jpg')"><div class="e-card__in"><h4>Civil</h4><h3>Earth Work &amp; Site Prep</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/waterproofing.jpg')"><div class="e-card__in"><h4>Specialty</h4><h3>Waterproofing &amp; Insulation</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/industrial.jpg')"><div class="e-card__in"><h4>Industrial</h4><h3>Industrial Structures</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/multistory.jpg')"><div class="e-card__in"><h4>Building</h4><h3>Multi-Storey Buildings</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/preengineered.jpg')"><div class="e-card__in"><h4>Industrial</h4><h3>Pre-Engineered Structures</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/concrete-tank.jpg')"><div class="e-card__in"><h4>Civil</h4><h3>Concrete Tanks</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/mep.jpg')"><div class="e-card__in"><h4>MEP</h4><h3>HVAC, Plumbing &amp; Electrical</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/cable-laying.jpg')"><div class="e-card__in"><h4>Infrastructure</h4><h3>Fibre Cable Laying</h3></div></a>
+          <a class="e-card" href="#contact" style="background-image:url('images/walkways-bridges.jpg')"><div class="e-card__in"><h4>Infrastructure</h4><h3>Walkways, Bridges &amp; Warehouses</h3></div></a>
+          </div>
+        </div>
+
+        <div class="expertise__nav">
+          <button class="e-nav__btn e-nav__btn--prev" type="button" data-exp-slide="prev" aria-label="Previous services">&#8592;</button>
+          <button class="e-nav__btn e-nav__btn--next" type="button" data-exp-slide="next" aria-label="Next services">&#8594;</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE — black ===== -->
+    <section class="experience panel" id="experience" data-panel="black">
+      <div class="container">
+        <p class="exp-line exp-line--left reveal" data-reveal="left">The MNK Experience,</p>
+        <p class="exp-line exp-line--right reveal" data-reveal="right">Built on <span class="lime">Trust</span></p>
+      </div>
+
+      <div class="container circle__grid" id="rnd">
+        <div class="circle" id="circleAnim">
+          <div class="circle__img" role="img" aria-label="MNK project building"></div>
+          <svg class="circle__svg" viewBox="0 0 550 550" aria-hidden="true">
+            <path class="arc arc--first" d="M 203 11 A 274 274 0 0 1 298 3" fill="none" stroke="#d6db1d" stroke-width="3"/>
+            <path class="arc arc--second" d="M 345 539 A 274 274 180 0 1 250 547" fill="none" stroke="#d6db1d" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="circle__text reveal">
+          <p>Our success is built on a foundation of knowledge, skill, experience and commitment. Promoted by Mr. Naseem Khan — a Civil Engineer by profession — MNK INFRA brings together highly trained engineers delivering Industrial, Commercial and Residential projects with a successful on-time track record across Maharashtra.</p>
+          <a class="btn btn--lime" href="#contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VISION / MISSION / SAFETY — white (replaces news) ===== -->
+    <section class="news panel" id="purpose" data-panel="white">
+      <div class="container">
+        <div class="news__head">
+          <div class="reveal">
+            <p class="eyebrow">Our Foundation</p>
+            <h2 class="news__title">Vision, Mission <em>&amp;</em> Safety</h2>
+          </div>
+          <a class="link-arrow reveal" style="--d:.15s" href="#contact">Get In Touch <span>&rarr;</span></a>
+        </div>
+
+        <div class="news__grid" data-stagger>
+          <a class="n-card reveal" href="#about">
+            <div class="n-card__frame"><img data-imgparallax src="images/our-vision.png" alt="Our Vision" loading="lazy"></div>
+            <p class="n-card__cat">Our Vision</p>
+            <h3>To be a premier Construction &amp; Engineering Company in India</h3>
+            <p class="n-card__excerpt">Creating with passion and innovation, world-class infrastructure to make human life comfortable.</p>
+            <span class="n-card__more">Read more &rarr;</span>
+          </a>
+          <a class="n-card reveal" href="#about">
+            <div class="n-card__frame"><img data-imgparallax src="images/our-mission.png" alt="Our Mission" loading="lazy"></div>
+            <p class="n-card__cat">Our Mission</p>
+            <h3>Profitable growth through project management, quality &amp; commitment</h3>
+            <p class="n-card__excerpt">Delivering high-quality civil engineering and construction services to the complete satisfaction of our clients, consultants, architects and engineers.</p>
+            <span class="n-card__more">Read more &rarr;</span>
+          </a>
+          <a class="n-card reveal" href="#about">
+            <div class="n-card__frame"><img data-imgparallax src="images/safety.jpg" alt="Safety culture" loading="lazy"></div>
+            <p class="n-card__cat">Safety Culture</p>
+            <h3>Safe contract practices and environment-friendly work culture</h3>
+            <p class="n-card__excerpt">Rigorous first-aid medical assistance and hygiene practices at all sites, with adequate resources and education for every worker.</p>
+            <span class="n-card__more">Read more &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA — black ===== -->
+    <section class="cta panel" id="contact" data-panel="black">
+      <div class="container">
+        <h2 class="cta__title reveal"><a href="#contact">Let's chat.</a></h2>
+        <div class="cta__cols" data-stagger>
+          <div class="reveal">
+            <p class="cta__label">Get In Touch</p>
+            <a href="tel:+912226619991">022-26619991 / 92</a>
+            <a href="mailto:mnkinfra09@gmail.com">mnkinfra09@gmail.com</a>
+          </div>
+          <div class="reveal" id="locations">
+            <p class="cta__label">Visit Us</p>
+            <a href="#contact">UB 20, Dheeraj Heritage, S.V Road</a>
+            <a href="#contact">Santacruz West, Mumbai — 400054</a>
+          </div>
+          <div class="reveal" id="team">
+            <p class="cta__label">Learn More</p>
+            <a href="#expertise">Our Services</a>
+            <a href="#projects">Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer" id="careers">
+    <div class="container footer__inner">
+      <a class="brand brand--footer" href="#top" aria-label="MNK Infra home">
+        <span class="brand__text">MNK <em>INFRA</em></span>
+      </a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#contact">Privacy Policy</a>
+        <a href="#contact">Terms of Use</a>
+        <a href="#contact">Code of Conduct</a>
+        <span>&copy; 2026 MNK INFRA · Building Better Tomorrow</span>
+      </nav>
+      <div class="footer__social">
+        <a href="#contact" aria-label="Facebook">f</a>
+        <a href="#contact" aria-label="LinkedIn">in</a>
+        <a href="#contact" aria-label="YouTube">yt</a>
+        <a href="#contact" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
