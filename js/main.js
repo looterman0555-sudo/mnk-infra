@@ -271,19 +271,22 @@
   /* ============ 8. Mobile nav ============ */
   var burger = document.getElementById("burger");
   var nav = document.getElementById("nav");
-  burger.addEventListener("click", function () {
-    var open = nav.classList.toggle("is-open");
+  var navBackdrop = document.getElementById("navBackdrop");
+  function setNav(open) {
+    nav.classList.toggle("is-open", open);
     burger.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("nav-open", open);
+    if (navBackdrop) navBackdrop.classList.toggle("is-open", open);
+  }
+  burger.addEventListener("click", function () {
+    setNav(!nav.classList.contains("is-open"));
   });
+  if (navBackdrop) {
+    navBackdrop.addEventListener("click", function () { setNav(false); });
+  }
   nav.addEventListener("click", function (e) {
-    if (e.target.closest("a") && nav.classList.contains("is-open")) {
-      nav.classList.remove("is-open");
-      burger.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("nav-open");
-    }
+    if (e.target.closest("a") && nav.classList.contains("is-open")) setNav(false);
   });
 
   /* ============ 9. Hero video play / pause ============ */
