@@ -18,16 +18,31 @@
 
   <!-- ===== Header (overlay over hero, solid on scroll) ===== -->
   <header class="siteheader" id="siteheader">
-    <div class="navbar">
-      <div class="container navbar__inner">
+    <div class="header-top">
+      <div class="container header-top__inner">
+        <button class="header-search" type="button" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <div class="header-top__links">
+          <a href="#contact">Contact</a>
+          <a href="#locations">Locations</a>
+        </div>
         <a class="brand" href="#top" aria-label="MNK Infra home">
           <span class="brand__text">MNK <em>INFRA</em></span>
         </a>
 
+        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-nav">
+      <div class="container header-nav__inner">
         <nav class="nav" id="nav" aria-label="Main">
           <ul class="nav__list">
             <li class="nav__item nav__item--sub">
-              <a href="#expertise">Services <span class="chev">&#9662;</span></a>
+              <a href="#expertise">Expertise <span class="chev">&#9662;</span></a>
               <div class="submenu">
                 <div class="submenu__col">
                   <p class="submenu__title">Buildings</p>
@@ -46,25 +61,19 @@
               </div>
             </li>
             <li class="nav__item"><a href="#projects">Projects</a></li>
-            <li class="nav__item"><a href="#about">About</a></li>
+            <li class="nav__item"><a href="#experience">The MNK Experience</a></li>
             <li class="nav__item"><a href="#purpose">Vision</a></li>
             <li class="nav__item"><a href="#purpose">Safety</a></li>
-            <li class="nav__item"><a href="#experience">Our Team</a></li>
-            <li class="nav__item"><a href="#contact">Contact</a></li>
+            <li class="nav__item"><a href="#about">About</a></li>
           </ul>
           <a class="btn btn--lime nav__mobile-cta" href="#contact">Build With Us</a>
         </nav>
-
-        <a class="btn btn--lime navbar__cta" href="#contact">Build With Us</a>
-
-        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
       </div>
-      <div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
-      </div>
-      <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+    </div>
+
+    <div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
   </header>
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
   <main id="top">
 
