@@ -838,7 +838,7 @@ em { font-style: italic; }
   .cta__cols { grid-template-columns: 1fr; gap: 26px; }
   .exp-line--right { text-align: left; }
 
-  .hero { padding-top: 170px; min-height: 92vh; }
+  .hero { padding-top: 170px; padding-bottom: 24vh; min-height: 100vh; align-items: flex-end; }
   .hero__media { background-attachment: scroll; }
   .expertise__grid { flex-direction: column; gap: 0; align-items: stretch; }
   .expertise__content { flex: auto; max-width: none; }
