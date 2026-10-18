@@ -784,10 +784,10 @@ em { font-style: italic; }
   .header-search { display: flex; color: #fff; }
   .siteheader.is-solid .header-search { color: #000; }
   .brand { position: absolute; left: 50%; transform: translateX(-50%); }
+  .brand__text { font-size: 1.3rem; letter-spacing: 0.5px; }
   .burger { display: flex; position: relative; z-index: 1100; color: #fff; }
   .siteheader.is-solid .burger { color: #000; }
   .burger span { background: currentColor; }
-  .hero__inner { display: none; }
   .nav {
     position: fixed;
     top: 0; right: 0;
