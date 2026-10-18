@@ -120,21 +120,14 @@ em { font-style: italic; }
 .topbar__links a:hover { color: var(--lime); opacity: 1; }
 
 .navbar { position: relative; }
-.navbar__inner { display: flex; align-items: center; gap: 30px; min-height: 82px; transition: min-height 0.35s var(--ease); position: relative; }
-.nav { position: absolute; left: 50%; transform: translateX(-50%); }
+.navbar__inner { display: flex; align-items: center; gap: 30px; min-height: 82px; transition: min-height 0.35s var(--ease); }
+.nav { margin-left: auto; }
 .burger { display: none; flex-direction: column; gap: 5px; padding: 8px; margin-left: auto; }
 .siteheader.is-solid .navbar__inner { min-height: 66px; }
-
-.header-search { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: #fff; padding: 0; flex-shrink: 0; }
-.siteheader.is-solid .header-search { color: #000; }
 
 .brand {
   display: flex;
   align-items: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
 }
 .brand__text {
   font-family: var(--serif);
@@ -148,6 +141,7 @@ em { font-style: italic; }
 .siteheader.is-solid .brand__text { color: #000; }
 .brand--footer .brand__text { color: #fff; }
 
+.nav { margin-left: auto; }
 .nav__list { display: flex; gap: 2px; list-style: none; }
 .nav__item > a {
   display: block;
@@ -834,13 +828,8 @@ em { font-style: italic; }
 @media (max-width: 920px) {
   .topbar__links { display: none; }
   .navbar__cta { display: none; }
-  .navbar__inner { gap: 0; justify-content: space-between; }
-  .header-search { display: flex; color: #fff; }
-  .siteheader.is-solid .header-search { color: #000; }
-  .brand { position: absolute; left: 50%; transform: translateX(-50%); }
-  .burger { display: flex; position: relative; z-index: 1100; color: #fff; }
-  .siteheader.is-solid .burger { color: #000; }
-  .burger span { background: currentColor; }
+  .navbar__inner { gap: 16px; }
+  .burger { display: flex; position: relative; z-index: 1100; margin-left: auto; }
   .nav {
     position: fixed;
     top: 0; right: 0;
