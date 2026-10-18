@@ -148,6 +148,19 @@
     });
   });
 
+  /* ============ 4b. HITT project-card stagger: settle into line when in view ============ */
+  var pCards = document.querySelectorAll(".p-track .p-card");
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("line-up"); pio.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    [].forEach.call(pCards, function (el) { pio.observe(el); });
+  } else {
+    [].forEach.call(pCards, function (el) { el.classList.add("line-up"); });
+  }
+
   /* ============ 5. Stat counters ============ */
   function animateCount(el) {
     var target = parseFloat(el.dataset.target);
