@@ -20,9 +20,17 @@
   <header class="siteheader" id="siteheader">
     <div class="navbar">
       <div class="container navbar__inner">
+        <button class="header-search" type="button" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+
         <a class="brand" href="#top" aria-label="MNK Infra home">
           <span class="brand__text">MNK <em>INFRA</em></span>
         </a>
+
+        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
 
         <nav class="nav" id="nav" aria-label="Main">
           <ul class="nav__list">
@@ -56,10 +64,6 @@
         </nav>
 
         <a class="btn btn--lime navbar__cta" href="#contact">Build With Us</a>
-
-        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
       </div>
       <div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
       </div>
