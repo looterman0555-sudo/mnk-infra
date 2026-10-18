@@ -252,57 +252,6 @@ em { font-style: italic; }
 }
 .hero__title em { font-family: var(--serif); }
 
-.hero__videobtn {
-  position: absolute;
-  left: max(24px, calc((100% - var(--container)) / 2));
-  bottom: 46px;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: #fff;
-  text-align: left;
-}
-.hero__videobtn-icon {
-  width: 54px; height: 54px;
-  display: grid; place-items: center;
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
-  border-radius: 50%;
-  font-size: 12px;
-  padding-left: 3px;
-  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease);
-}
-.hero__videobtn:hover .hero__videobtn-icon { background: var(--lime); border-color: var(--lime); color: #000; transform: scale(1.08); }
-.hero__videobtn-text { font-weight: 800; font-size: 14px; line-height: 1.3; }
-.hero__videobtn-text small {
-  display: block;
-  font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.hero__scroll {
-  position: absolute;
-  right: max(24px, calc((100% - var(--container)) / 2));
-  bottom: 46px;
-  width: 24px; height: 44px;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  border-radius: 999px;
-  z-index: 4;
-}
-.hero__scroll span {
-  position: absolute;
-  top: 8px; left: 50%;
-  width: 4px; height: 8px;
-  margin-left: -2px;
-  background: var(--lime);
-  border-radius: 4px;
-  animation: hint 1.8s infinite;
-}
-@keyframes hint { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(16px); opacity: 0; } 100% { opacity: 0; } }
-
 /* ================= giant parallax titles ================= */
 .giant {
   position: absolute;
@@ -901,8 +850,6 @@ em { font-style: italic; }
   .projects__head { flex-direction: column; align-items: flex-start; }
   .news__head { flex-direction: column; align-items: flex-start; }
   .giant { font-size: 92px; letter-spacing: 5px; top: 10px; }
-  .hero__videobtn { bottom: 100px; }
-  .hero__scroll { display: none; }
   .p-card { flex-basis: 78vw; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }

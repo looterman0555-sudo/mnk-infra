@@ -289,26 +289,10 @@
     if (e.target.closest("a") && nav.classList.contains("is-open")) setNav(false);
   });
 
-  /* ============ 9. Hero video play / pause ============ */
+  /* ============ 9. Hero video autoplay ============ */
   var heroVideo = document.getElementById("heroVideo");
-  var heroVideoBtn = document.getElementById("heroVideoBtn");
-  if (heroVideo && heroVideoBtn) {
-    var vIcon = document.getElementById("heroVideoIcon");
-    var vState = document.getElementById("heroVideoState");
+  if (heroVideo) {
     var tryPlay = heroVideo.play();
     if (tryPlay && typeof tryPlay.catch === "function") tryPlay.catch(function () {});
-    heroVideoBtn.addEventListener("click", function () {
-      if (heroVideo.paused) {
-        heroVideo.play();
-        vIcon.innerHTML = "&#10074;&#10074;";
-        vState.textContent = "playing";
-        heroVideoBtn.setAttribute("aria-label", "Pause background video");
-      } else {
-        heroVideo.pause();
-        vIcon.innerHTML = "&#9654;";
-        vState.textContent = "paused";
-        heroVideoBtn.setAttribute("aria-label", "Play background video");
-      }
-    });
   }
 })();
