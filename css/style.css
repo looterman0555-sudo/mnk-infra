@@ -268,11 +268,10 @@ em { font-style: italic; }
   line-height: 1.06;
   color: #fff;
   margin-bottom: 40px;
-  max-width: 15ch;
 }
 .hero__title em { font-family: var(--serif); }
 
-/* rotating headline — stacked lines, fade + slight rise */
+/* rotating headline — always 2 lines, fade + slight rise */
 .hero__rotator {
   display: grid;
 }
