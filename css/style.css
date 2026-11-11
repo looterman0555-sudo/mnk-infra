@@ -253,10 +253,11 @@ em { font-style: italic; }
 .hero__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(46px, 7.6vw, 104px);
-  line-height: 1.06;
+  font-size: clamp(40px, 6.4vw, 88px);
+  line-height: 1.08;
   color: #fff;
   margin-bottom: 40px;
+  max-width: 11ch;
 }
 .hero__title em { font-family: var(--serif); }
 
