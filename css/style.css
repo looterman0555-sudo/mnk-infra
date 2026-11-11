@@ -243,6 +243,7 @@ em { font-style: italic; }
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 40px;
+  padding-right: clamp(24px, 8vw, 120px);
 }
 .hero__tag {
   font-weight: 800;
