@@ -302,6 +302,24 @@
     if (e.target.closest("a") && nav.classList.contains("is-open")) setNav(false);
   });
 
+  /* ============ 8b. Hero headline fade rotation ============ */
+  var heroLines = document.querySelectorAll(".hero__line");
+  if (heroLines.length > 1) {
+    if (reduceMotion) {
+      for (var li = 1; li < heroLines.length; li++) {
+        heroLines[li].classList.remove("is-active");
+        heroLines[li].style.display = "none";
+      }
+    } else {
+      var heroIdx = 0;
+      setInterval(function () {
+        heroLines[heroIdx].classList.remove("is-active");
+        heroIdx = (heroIdx + 1) % heroLines.length;
+        heroLines[heroIdx].classList.add("is-active");
+      }, 3500);
+    }
+  }
+
   /* ============ 9. Hero video autoplay ============ */
   var heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
