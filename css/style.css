@@ -237,9 +237,12 @@ em { font-style: italic; }
 }
 .hero__inner { position: relative; z-index: 3; }
 
-/* tag — same left edge as Building's B, fades in with title */
-.hero__head {
-  margin-bottom: 22px;
+/* MNK INFRA stacked above title — M and B flush on same left edge */
+.hero__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
 }
 .hero__tag {
   font-weight: 800;
@@ -248,7 +251,8 @@ em { font-style: italic; }
   text-transform: uppercase;
   color: var(--lime);
   line-height: 1;
-  margin: 0;
+  margin: 0 0 20px;
+  padding: 0;
 }
 .hero__title {
   font-family: var(--serif);
@@ -256,7 +260,8 @@ em { font-style: italic; }
   font-size: clamp(46px, 7.6vw, 104px);
   line-height: 1.06;
   color: #fff;
-  margin-bottom: 40px;
+  margin: 0;
+  padding: 0;
 }
 .hero__title em { font-family: var(--serif); }
 
