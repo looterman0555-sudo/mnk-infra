@@ -61,7 +61,7 @@
   });
 
   var heroMedia = document.querySelector("[data-heromedia]");
-  var heroSection = heroMedia ? heroMedia.closest(".hero") : null;
+  var heroSection = heroMedia ? heroMedia.closest(".hero, .phero") : null;
 
   function updateMotion() {
     var vh = window.innerHeight;
@@ -81,11 +81,9 @@
       var r = g.parent.getBoundingClientRect();
       if (r.bottom < -100 || r.top > vh + 100) return;
       var progress = clamp((vh - r.top) / (vh + r.height), 0, 1);
-      // Full-phrase sweep: "O" enters the white zone by ~p0.15 and the
-      // tail passes by ~p0.67 — all while the giant is still on screen.
-      g.target = (0.30 - progress) * g.speed * (desktop ? 1 : 0.5);
+      g.target = (0.5 - progress) * g.speed * (desktop ? 1 : 0.5);
       if (reduceMotion) g.cur = g.target;
-      g.cur = lerp(g.cur, g.target, 0.12);
+      g.cur = lerp(g.cur, g.target, 0.07);
       g.el.style.transform = "translate3d(" + g.cur.toFixed(1) + "px,0,0)";
     });
 
@@ -148,19 +146,6 @@
     });
   });
 
-  /* ============ 4b. HITT project-card stagger: settle into line when in view ============ */
-  var pCards = document.querySelectorAll(".p-track .p-card");
-  if ("IntersectionObserver" in window && !reduceMotion) {
-    var pio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("line-up"); pio.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    [].forEach.call(pCards, function (el) { pio.observe(el); });
-  } else {
-    [].forEach.call(pCards, function (el) { el.classList.add("line-up"); });
-  }
-
   /* ============ 5. Stat counters ============ */
   function animateCount(el) {
     var target = parseFloat(el.dataset.target);
@@ -191,7 +176,7 @@
     });
   }
 
-  /* ============ 6. Projects slider: drag + arrows ============ */
+  /* ============ 6. Projects slider: continuous horizontal drag + arrows ============ */
   var slider = document.getElementById("pSlider");
   if (slider) {
     var isDown = false, startX = 0, startScroll = 0, moved = 0;
@@ -203,6 +188,7 @@
       startScroll = slider.scrollLeft;
       slider.classList.add("is-dragging");
       slider.setPointerCapture(e.pointerId);
+      slider.style.animationPlayState = "paused";
     });
     slider.addEventListener("pointermove", function (e) {
       if (!isDown) return;
@@ -214,6 +200,7 @@
       slider.addEventListener(evt, function () {
         isDown = false;
         slider.classList.remove("is-dragging");
+        slider.style.animationPlayState = "running";
       });
     });
 
@@ -252,7 +239,7 @@
     document.querySelectorAll("[data-exp-slide]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var card = expSlider.querySelector(".e-card");
-        var step = card ? card.getBoundingClientRect().width + 36 : 380;
+        var step = card ? card.getBoundingClientRect().width + 40 : 380;
         expSlider.scrollBy({ left: btn.dataset.expSlide === "next" ? step : -step, behavior: "smooth" });
       });
     });
@@ -284,28 +271,26 @@
   /* ============ 8. Mobile nav ============ */
   var burger = document.getElementById("burger");
   var nav = document.getElementById("nav");
-  var navBackdrop = document.getElementById("navBackdrop");
-  function setNav(open) {
-    nav.classList.toggle("is-open", open);
+  burger.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
     burger.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("nav-open", open);
-    if (navBackdrop) navBackdrop.classList.toggle("is-open", open);
-  }
-  burger.addEventListener("click", function () {
-    setNav(!nav.classList.contains("is-open"));
   });
-  if (navBackdrop) {
-    navBackdrop.addEventListener("click", function () { setNav(false); });
-  }
   nav.addEventListener("click", function (e) {
-    if (e.target.closest("a") && nav.classList.contains("is-open")) setNav(false);
+    if (e.target.closest("a") && nav.classList.contains("is-open")) {
+      nav.classList.remove("is-open");
+      burger.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("nav-open");
+    }
   });
 
   /* ============ 8b. Hero headline fade rotation ============ */
   var heroLines = document.querySelectorAll(".hero__line");
   if (heroLines.length > 1) {
     if (reduceMotion) {
+      // keep first line only
       for (var li = 1; li < heroLines.length; li++) {
         heroLines[li].classList.remove("is-active");
         heroLines[li].style.display = "none";
@@ -320,10 +305,261 @@
     }
   }
 
-  /* ============ 9. Hero video autoplay ============ */
+  /* ============ 9. Hero video play / pause ============ */
   var heroVideo = document.getElementById("heroVideo");
-  if (heroVideo) {
+  var heroVideoBtn = document.getElementById("heroVideoBtn");
+  if (heroVideo && heroVideoBtn) {
+    var vIcon = document.getElementById("heroVideoIcon");
+    var vState = document.getElementById("heroVideoState");
     var tryPlay = heroVideo.play();
     if (tryPlay && typeof tryPlay.catch === "function") tryPlay.catch(function () {});
+    heroVideoBtn.addEventListener("click", function () {
+      if (heroVideo.paused) {
+        heroVideo.play();
+        vIcon.innerHTML = "&#10074;&#10074;";
+        vState.textContent = "playing";
+        heroVideoBtn.setAttribute("aria-label", "Pause background video");
+      } else {
+        heroVideo.pause();
+        vIcon.innerHTML = "&#9654;";
+        vState.textContent = "paused";
+        heroVideoBtn.setAttribute("aria-label", "Play background video");
+      }
+    });
+  }
+
+  /* ============ 10. Active nav item (multi-page routing) ============ */
+  var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  if (here === "") here = "index.html";
+  if (here === "project.html") here = "projects.html";
+  if (here === "service.html") here = "services.html";
+  [].forEach.call(document.querySelectorAll(".nav__list > li > a"), function (a) {
+    var href = (a.getAttribute("href") || "").split("#")[0].toLowerCase();
+    if (href && href === here) a.classList.add("is-active");
+  });
+
+  /* ============ 11. Detail page renderer (project.html / service.html) ============ */
+  var data = window.MNK_DATA;
+  if (data) {
+    var params = new URLSearchParams(location.search);
+
+    function setText(sel, val) {
+      var el = document.querySelector(sel);
+      if (el && val != null) el.textContent = val;
+    }
+    function setHTML(sel, val) {
+      var el = document.querySelector(sel);
+      if (el && val != null) el.innerHTML = val;
+    }
+    function escapeHTML(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+    function projectCard(p) {
+      return (
+        '<a class="p-card reveal is-visible" href="project.html?p=' + encodeURIComponent(p.slug) + '">' +
+          '<div class="p-card__frame"><img data-imgparallax src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.title) + '" loading="lazy"></div>' +
+          '<p class="p-card__cat">' + escapeHTML(p.category) + "</p>" +
+          '<h3 class="p-card__title">' + escapeHTML(p.title) + "</h3>" +
+          '<p class="p-card__loc">' + escapeHTML(p.location) + "</p>" +
+        "</a>"
+      );
+    }
+    function relatedProjects(currentSlug, category) {
+      var list = data.projects.filter(function (p) { return p.slug !== currentSlug; });
+      var sameCat = list.filter(function (p) { return p.category === category; });
+      var rest = list.filter(function (p) { return p.category !== category; });
+      return sameCat.concat(rest).slice(0, 3);
+    }
+
+    // ---- project.html ----
+    var slug = params.get("p");
+    if (slug && data.projects) {
+      var project = null;
+      for (var i = 0; i < data.projects.length; i++) {
+        if (data.projects[i].slug === slug) { project = data.projects[i]; break; }
+      }
+      if (project) {
+        document.title = project.title + " — MNK INFRA";
+        setText("[data-detail-cat]", project.category);
+        setText("[data-detail-title]", project.title);
+        setText("[data-detail-location]", project.location);
+        setText("[data-detail-overview]", project.overview);
+        var media = document.querySelector("[data-detail-media]");
+        if (media) media.style.backgroundImage = 'url("' + project.image + '")';
+        var img = document.querySelector("[data-detail-image]");
+        if (img) { img.src = project.image; img.alt = project.title; }
+        var facts = document.querySelector("[data-detail-facts]");
+        if (facts) {
+          var rows = [
+            ["Location", project.location],
+            ["Category", project.category],
+            ["Client", project.client],
+            ["Year", project.year],
+            ["Status", project.status],
+            ["Scope", project.scope]
+          ];
+          facts.innerHTML = rows.map(function (r) {
+            return '<div class="facts__row"><span class="facts__k">' + escapeHTML(r[0]) + '</span><span class="facts__v">' + escapeHTML(r[1]) + "</span></div>";
+          }).join("");
+        }
+        var hl = document.querySelector("[data-detail-highlights]");
+        if (hl) hl.innerHTML = project.highlights.map(function (h) {
+          return "<li>" + escapeHTML(h) + "</li>";
+        }).join("");
+        var rel = document.querySelector("[data-detail-related]");
+        if (rel) rel.innerHTML = relatedProjects(project.slug, project.category).map(projectCard).join("");
+      }
+    }
+
+    // ---- service.html ----
+    var sSlug = params.get("s");
+    if (sSlug && data.services) {
+      var service = null;
+      for (var j = 0; j < data.services.length; j++) {
+        if (data.services[j].slug === sSlug) { service = data.services[j]; break; }
+      }
+      if (service) {
+        document.title = service.title + " — MNK INFRA";
+        setText("[data-detail-group]", service.group);
+        setText("[data-detail-title]", service.title);
+        setText("[data-detail-lede]", service.lede);
+        setText("[data-detail-eyebrow]", service.group);
+        setText("[data-detail-intro]", service.intro);
+        setText("[data-detail-intro-title]", service.title);
+        var sMedia = document.querySelector("[data-detail-media]");
+        if (sMedia) sMedia.style.backgroundImage = 'url("' + service.image + '")';
+        var sScopeImg = document.querySelector("[data-detail-scope-image]");
+        if (sScopeImg) { sScopeImg.src = service.image; sScopeImg.alt = service.title; }
+
+        var secWrap = document.querySelector("[data-detail-sections]");
+        if (secWrap && service.sections) {
+          secWrap.innerHTML = service.sections.map(function (sec, idx) {
+            var reversed = idx % 2 === 1;
+            return (
+              '<div class="split__grid' + (reversed ? " split__grid--rev" : "") + '" style="' + (idx ? "margin-top: clamp(48px, 7vw, 96px);" : "") + '">' +
+                '<div class="split__media reveal"><div class="frame"><img data-imgparallax src="' + escapeHTML(sec.image) + '" alt="' + escapeHTML(sec.title) + '" loading="lazy"></div></div>' +
+                '<div class="split__body reveal" style="--d:.15s">' +
+                  '<p class="eyebrow">0' + (idx + 1) + " — " + escapeHTML(service.title) + "</p>" +
+                  '<h2 class="ptitle ptitle--sm">' + escapeHTML(sec.title) + "</h2>" +
+                  '<p class="plede">' + escapeHTML(sec.text) + "</p>" +
+                "</div>" +
+              "</div>"
+            );
+          }).join("");
+        }
+
+        var statsEl = document.querySelector("[data-detail-stats]");
+        if (statsEl && service.stats) {
+          statsEl.innerHTML = service.stats.map(function (st) {
+            return (
+              '<div class="stat reveal">' +
+                '<p class="stat__num">' + escapeHTML(st.value) + "</p>" +
+                '<h6 class="stat__label">' + escapeHTML(st.label) + "</h6>" +
+              "</div>"
+            );
+          }).join("");
+        }
+
+        var scopeEl = document.querySelector("[data-detail-scope]");
+        if (scopeEl && service.scope) {
+          scopeEl.innerHTML = service.scope.map(function (s) {
+            return "<li>" + escapeHTML(s) + "</li>";
+          }).join("");
+        }
+
+        var sRel = document.querySelector("[data-detail-related]");
+        if (sRel) {
+          var catMap = {
+            "Buildings": ["Commercial Buildings", "Residential Buildings", "Industrial Structures"],
+            "Civil & Infrastructure": ["Road Construction", "Warehouses"],
+            "Specialty & MEP": ["Concrete Tanks", "Commercial Buildings"]
+          };
+          var wanted = catMap[service.group] || [];
+          var picked = data.projects.filter(function (p) { return wanted.indexOf(p.category) !== -1; });
+          var filler = data.projects.filter(function (p) { return wanted.indexOf(p.category) === -1; });
+          sRel.innerHTML = picked.concat(filler).slice(0, 3).map(projectCard).join("");
+        }
+      }
+    }
+
+    // observe / show reveals added by the detail renderer above
+    var lateReveals = document.querySelectorAll(".reveal:not(.is-visible)");
+    if (typeof io !== "undefined" && io) {
+      [].forEach.call(lateReveals, function (el) { io.observe(el); });
+    } else {
+      [].forEach.call(lateReveals, function (el) { el.classList.add("is-visible"); });
+    }
+  }
+
+
+  /* ============ 11. Category filter pills (projects page) ============ */
+  var filterBar = document.querySelector("[data-filter-bar]");
+  if (filterBar) {
+    var filterItems = document.querySelectorAll("[data-category]");
+    filterBar.addEventListener("click", function (e) {
+      var pill = e.target.closest(".pill");
+      if (!pill) return;
+      [].forEach.call(filterBar.querySelectorAll(".pill"), function (p) {
+        p.classList.toggle("is-active", p === pill);
+      });
+      var cat = pill.dataset.pill;
+      [].forEach.call(filterItems, function (item) {
+        var show = cat === "all" || item.dataset.category === cat;
+        item.classList.toggle("is-hidden", !show);
+      });
+    });
+  }
+
+  /* ============ 12. Enquiry form validation (contact page) ============ */
+  var form = document.getElementById("enquiryForm");
+  if (form) {
+    var formStatus = document.getElementById("formStatus");
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    var phoneRe = /^\+?[0-9][0-9\s\-()]{7,16}$/;
+
+    function fieldOf(input) { return input.closest(".field"); }
+    function setErr(input, msg) {
+      var field = fieldOf(input);
+      var err = field.querySelector(".field__err");
+      field.classList.toggle("is-error", !!msg);
+      if (err) { err.textContent = msg || ""; err.hidden = !msg; }
+      return !msg;
+    }
+    function check(input) {
+      var v = (input.value || "").trim();
+      var name = input.name;
+      if (input.hasAttribute("required") && !v) return setErr(input, "This field is required.");
+      if (!v) return setErr(input, "");
+      if (name === "email" && !emailRe.test(v)) return setErr(input, "Please enter a valid email address.");
+      if (name === "phone" && !phoneRe.test(v)) return setErr(input, "Please enter a valid phone number.");
+      if (name === "name" && v.length < 2) return setErr(input, "Please enter your full name.");
+      if (name === "message" && v.length < 10) return setErr(input, "Please provide at least 10 characters.");
+      return setErr(input, "");
+    }
+
+    [].forEach.call(form.querySelectorAll("input, select, textarea"), function (input) {
+      input.addEventListener("blur", function () { check(input); });
+      input.addEventListener("input", function () {
+        if (fieldOf(input).classList.contains("is-error")) check(input);
+      });
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var ok = true;
+      var firstBad = null;
+      [].forEach.call(form.querySelectorAll("input, select, textarea"), function (input) {
+        if (!check(input)) { ok = false; if (!firstBad) firstBad = input; }
+      });
+      if (!ok) { if (firstBad) firstBad.focus(); return; }
+      // TODO: POST the enquiry to a backend / form endpoint when available.
+      form.reset();
+      if (formStatus) {
+        formStatus.hidden = false;
+        formStatus.textContent = "Thank you — your enquiry has been received. Our team will get back to you shortly.";
+      }
+    });
   }
 })();
