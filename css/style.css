@@ -474,10 +474,9 @@ em { font-style: italic; }
   height: 100%;
   object-fit: cover;
   filter: saturate(0.9);
-  transition: filter 0.5s, scale 0.8s var(--ease);
-  will-change: transform;
+  transition: filter 0.5s;
 }
-.p-card:hover .p-card__frame img { filter: saturate(1.05); scale: 1.05; }
+.p-card:hover .p-card__frame img { filter: saturate(1.05); }
 .p-card__cat {
   text-transform: uppercase;
   letter-spacing: 1.3px;
