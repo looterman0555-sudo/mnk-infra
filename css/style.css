@@ -861,15 +861,15 @@ em { font-style: italic; }
   z-index: 2;
   background: #000;
   color: rgba(255, 255, 255, 0.6);
-  padding: 34px 0;
+  padding: 16px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
-.footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap; }
-.footer__links { display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px; }
+.footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.footer__links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-size: 14px; line-height: 1.5; }
 .footer__links a:hover { color: var(--lime); }
-.footer__social { display: flex; gap: 10px; }
+.footer__social { display: flex; gap: 8px; }
 .footer__social a {
-  width: 36px; height: 36px;
+  width: 32px; height: 32px;
   display: grid; place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 50%;
