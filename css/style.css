@@ -865,9 +865,6 @@ em { font-style: italic; }
   padding: 16px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
-@media (min-width: 641px) {
-  .footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; }
-}
 .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .footer__links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-size: 14px; line-height: 1.5; }
 .footer__links a:hover { color: var(--lime); }
