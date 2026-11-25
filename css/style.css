@@ -140,13 +140,14 @@ em { font-style: italic; }
   white-space: nowrap;
   display: flex;
   align-items: center;
+  gap: 0.24em;
 }
-.brand__text > *:first-child {
+.brand__mnk {
   color: #fff;
   transition: color 0.3s;
 }
-.siteheader.is-solid .brand__text > *:first-child {
-  color: #111111;
+.siteheader.is-solid .brand__mnk {
+  color: #000;
 }
 .brand__text em {
   color: var(--lime-text);
