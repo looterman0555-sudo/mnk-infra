@@ -297,11 +297,14 @@
       }
     } else {
       var heroIdx = 0;
+      var heroDuration = 700;
       setInterval(function () {
         heroLines[heroIdx].classList.remove("is-active");
-        heroIdx = (heroIdx + 1) % heroLines.length;
-        heroLines[heroIdx].classList.add("is-active");
-      }, 3500);
+        window.setTimeout(function () {
+          heroIdx = (heroIdx + 1) % heroLines.length;
+          heroLines[heroIdx].classList.add("is-active");
+        }, heroDuration);
+      }, 4200);
     }
   }
 

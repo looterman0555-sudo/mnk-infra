@@ -258,7 +258,7 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: clamp(44px, 5vw, 64px);
   padding-right: clamp(24px, 8vw, 120px);
 }
 .hero__tag {
@@ -306,6 +306,7 @@ em { font-style: italic; }
 /* desktop only: lock all 3 headlines to same footprint as Building Better Tomorrow */
 @media (min-width: 641px) {
   .hero__title {
+    font-size: clamp(46px, 6.8vw, 92px);
     width: max-content;
     max-width: 100%;
   }
