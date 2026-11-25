@@ -565,13 +565,4 @@
       }
     });
   }
-
-  var footer = document.querySelector(".footer");
-  var footerFixed = window.matchMedia("(min-width: 641px)");
-  function syncFooterSpace() {
-    document.body.style.paddingBottom = footer && footerFixed.matches ? footer.offsetHeight + "px" : "";
-  }
-  syncFooterSpace();
-  window.addEventListener("resize", syncFooterSpace);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncFooterSpace);
 })();
