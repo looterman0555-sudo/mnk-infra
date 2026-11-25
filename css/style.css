@@ -307,7 +307,7 @@ em { font-style: italic; }
 /* desktop only: lock all 3 headlines to same footprint as Building Better Tomorrow */
 @media (min-width: 641px) {
   .hero__title {
-    font-size: clamp(46px, 6.8vw, 92px);
+    font-size: clamp(42px, 6vw, 78px);
     width: max-content;
     max-width: 100%;
   }
