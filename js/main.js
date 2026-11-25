@@ -362,7 +362,7 @@
     function projectCard(p) {
       return (
         '<a class="p-card reveal is-visible" href="project.html?p=' + encodeURIComponent(p.slug) + '">' +
-          '<div class="p-card__frame"><img data-imgparallax src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.title) + '" loading="lazy"></div>' +
+          '<div class="p-card__frame"><img src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.title) + '" loading="lazy"></div>' +
           '<p class="p-card__cat">' + escapeHTML(p.category) + "</p>" +
           '<h3 class="p-card__title">' + escapeHTML(p.title) + "</h3>" +
           '<p class="p-card__loc">' + escapeHTML(p.location) + "</p>" +
